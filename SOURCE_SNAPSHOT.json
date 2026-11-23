@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "repository": "NeuraX-JB/industrial-gas-cost-simulator",
+  "review_date": "2026-11-23",
+  "source_repository": "NeuraX-JB/Henry-Hub-Futures-Curve-Explorer-How-the-Natural-Gas-Market-prices-winter",
+  "source_commit": "80c2e5321dadc95aadd4c7f65792fb15f0e2f156",
+  "reviewed_baseline_commit": "7a1da730b9e0ed70f2d6fe8dfcb7be097727bdac",
+  "publication_mode": "Documented research snapshot. No live data refresh workflow is enabled here.",
+  "frozen_data_sha256": {
+    "lab/industrial/forward-audit.csv": "9cdb3fb35fb49bac7e08829422241cbdc0f1d0f289e53a7c28528dfb24e73d91",
+    "lab/industrial/market.js": "5856f9a890e4b5031df28354aeef305e86615b6d464c67e9dd5587b2a7303653"
+  }
+}

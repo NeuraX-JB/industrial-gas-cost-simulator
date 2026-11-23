@@ -1,17 +1,17 @@
-# Data use and attribution
+# Industrial gas cost data and attribution
 
-This repository presents independent research and educational applications. Public access to source data does not necessarily grant unrestricted redistribution or commercial reuse.
+This repository contains the industrial procurement replay. It does not include the weather, storage or API datasets from the original portfolio.
 
-| Source | Material used | Where documented |
+| Source | Material used here | Reference and audit |
 | :--- | :--- | :--- |
-| U.S. Energy Information Administration (EIA) | Lower 48 storage, Henry Hub spot observations and historical futures archive | [Shared source notes](lab/data/README.md), [EIA data](https://www.eia.gov/naturalgas/) |
-| NOAA Climate Prediction Center | Observed population-weighted degree days | [Shared source notes](lab/data/README.md) |
-| NOAA GFS operational archive | Archived temperature forecast fields | [Weather methodology](lab/weather/README.md) |
-| U.S. Census Bureau / us-atlas | Population sampling weights and state geometry | [Weather methodology](lab/weather/README.md), [us-atlas license](lab/weather/research/US_ATLAS_LICENSE) |
-| SEC filings | Selected reconstructed futures curve snapshots and archived price examples | [Curve explorer](https://neurax-jb.github.io/Henry-Hub-Futures-Curve-Explorer-How-the-Natural-Gas-Market-prices-winter/), [Industrial simulator](https://neurax-jb.github.io/Henry-Hub-Futures-Curve-Explorer-How-the-Natural-Gas-Market-prices-winter/lab/industrial/) |
+| U.S. Energy Information Administration | 358 monthly average Henry Hub spot observations, 1997-01–2026-10; release 2026-11-18 | [EIA monthly series](https://www.eia.gov/dnav/ng/hist/rngwhhdM.htm), [frozen market asset](lab/industrial/market.js) |
+| U.S. 12 Month Natural Gas Fund SEC filings | 13 reconstructed curve snapshots, 2023-09-29–2026-09-30 | [Position audit with source URLs](lab/industrial/forward-audit.csv), [reconstruction code](lab/industrial/refresh.py) |
+| User assumptions | Plant volumes, fixed percentage, local basis, delivery tariffs, monthly fee and optional flat fixed price | Entered in [the simulator](lab/industrial/index.html); the supplied plant profiles and local charges are illustrative |
 
-EIA attributes the underlying Henry Hub spot price data to Refinitiv, an LSEG business. Check the relevant third-party terms before redistributing or using those quotes commercially. Filings may include third-party information and do not automatically confer a redistribution license.
+For each audited long futures position, `(original notional + signed unrealized gain/loss) / (contracts × 10,000 MMBtu)` gives the implied price, rounded to $0.001/MMBtu. The observation date precedes the winter in which it can be used, but the filing became public later. These reconstructions are historical marks, not a record of executable plant quotes or information necessarily available to a trader on the observation date.
 
-The [source manifest](lab/data/manifest.json) documents retrieval times and hashes; the [API metadata](lab/api/v1/index.json) documents coverage and units. Historical source files may contain revisions.
+The simulator uses complete November–March cash periods and requires all five delivery prices for an archived fixed-price scenario. EIA monthly averages do not account for a plant's daily consumption pattern. The full model assumptions and exclusions are in [README.md](README.md) and the application's methodology section.
 
-No repository-wide license is declared. The separate us-atlas license remains applicable to its covered material. A repository-wide license and the rights to any third-party datasets or media should be reviewed independently before relicensing or commercial distribution. Nothing in this document grants new rights to third-party content.
+[SOURCE_SNAPSHOT.json](SOURCE_SNAPSHOT.json) records the original source commit and frozen-file provenance. This standalone edition does not automatically update its data; source releases may be revised later.
+
+EIA attributes its underlying Henry Hub spot data to Refinitiv, an LSEG business. Public access does not necessarily permit unrestricted redistribution or commercial reuse. Review the source and third-party terms, including material in SEC filings. No repository-wide license or new rights to third-party content are granted here.

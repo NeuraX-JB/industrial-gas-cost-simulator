@@ -53,16 +53,23 @@ def get_spot(html):
     return spot, release
 
 
-def get_curves():
+def get_curves(path=None):
     curves = {}
-    with (HERE / "forward-audit.csv").open() as handle:
+    seen = set()
+    with (Path(path) if path is not None else HERE / "forward-audit.csv").open(newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
             date = row["trade_date"]
+            key = (date, row["delivery_month"])
+            if key in seen:
+                raise ValueError(f"Duplicate forward observation: {date} {row['delivery_month']}")
+            seen.add(key)
             price = ((Decimal(row["notional_amount"]) + Decimal(row["unrealized_gain_loss"])) /
                      (Decimal(row["contracts"]) * Decimal(10000))).quantize(Decimal(".001"), rounding=ROUND_HALF_UP)
             if price != Decimal(row["implied_settlement"]):
                 raise ValueError(f"Failed audit of {date} {row['delivery_month']}")
             rec = curves.setdefault(date, {"source": row["source_url"], "prices": {}})
+            if rec["source"] != row["source_url"]:
+                raise ValueError(f"Conflicting source URLs for {date}")
             rec["prices"][row["delivery_month"]] = float(price)
     return curves
 
