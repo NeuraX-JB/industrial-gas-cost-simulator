@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#113830"><title>Industrial Gas Cost Simulator · Henry Hub Research</title>
+<meta name="description" content="Replay a U.S. plant's winter gas budget. Compare monthly Henry Hub cash prices with fixing part of the volume before winter, including local delivery assumptions.">
+<link rel="stylesheet" href="style.css"><script src="market.js" defer></script><script src="model.js" defer></script><script src="app.js" defer></script>
+</head><body>
+<header><div class="top"><a href="../">Henry Hub Research</a><nav aria-label="Site navigation"><a href="../">Research lab</a><a href="#methods">Methodology</a></nav></div></header>
+<main>
+<section class="intro"><p class="eyebrow">Industrial procurement</p><h1>Industrial Gas Cost Simulator</h1><p>Replay a U.S. plant’s winter gas bill. Compare floating Henry Hub prices with fixing part of each month’s consumption in advance.</p></section>
+<form id="assumptions" novalidate>
+<section class="controls card"><div class="section-head"><div><p class="eyebrow">Scenario</p><h2>Winter purchase plan</h2></div><button type="button" id="reset" class="quiet">Reset scenario</button></div>
+<div class="grid"><label>Winter delivery period<select id="season"></select></label>
+<label>Plant consumption profile<select id="profile"><option value="mill">Illustrative U.S. paper mill</option><option value="factory">Illustrative U.S. factory</option><option value="custom">Custom profile</option></select></label>
+<label>Price for the fixed share<select id="quote"></select></label>
+<label>Fixed share of monthly volume <span class="number-field"><input type="number" id="share" min="0" max="100" step="any" value="50"><span>%</span></span></label>
+<label id="manualWrap" hidden>Assumed fixed price <span class="number-field"><input type="number" id="manual" step="any" value="3.50"><span>$/MMBtu</span></span></label></div>
+<p id="price-note" class="field-note"></p>
+<div class="subhead"><h3>Monthly consumption</h3><span>MMBtu</span></div><div class="vol-grid" id="volumes"></div>
+<details class="assumption-detail" open><summary>Local basis and delivery charges</summary>
+<div class="grid local"><label>Local basis differential <span class="number-field"><input id="basis" type="number" step="any" value="0.20"><span>$/MMBtu</span></span></label>
+<label>Variable delivery tariff <span class="number-field"><input id="delivery" type="number" min="0" step="any" value="0.35"><span>$/MMBtu</span></span></label>
+<label>Monthly service charge <span class="number-field"><input id="fee" type="number" min="0" step="any" value="0"><span>$/month</span></span></label></div>
+<p class="field-note">Both purchasing plans pay the same local charges. Replace these illustrative rates with the plant’s contract terms.</p></details>
+<p id="error" role="alert" hidden></p></section></form>
+<div id="output" aria-live="off">
+<section class="tiles" aria-label="Winter cost comparison">
+<div class="tile"><span>All-variable budget</span><strong id="varTotal">—</strong><small>Henry Hub cash + local charges</small></div>
+<div class="tile"><span>Fixed-share budget</span><strong id="mixTotal">—</strong><small id="mixSub">Fixed and variable gas + local charges</small></div>
+<div class="tile difference"><span>Effect of fixing</span><strong id="deltaTotal">—</strong><small id="deltaSub">Relative to all-variable cost</small></div>
+</section>
+<section class="card chart-card"><div class="section-head"><div><p class="eyebrow">Budget replay</p><h2>Monthly gas spend</h2></div><div class="legend"><span><i class="swatch variable"></i>All variable</span><span><i class="swatch mixed"></i>Fixed share</span></div></div>
+<div id="chart" class="chart" aria-hidden="true"></div><p id="chart-note" class="field-note"></p></section>
+<section class="card details"><div class="section-head"><div><p class="eyebrow">Budget detail</p><h2>Delivered cost by month</h2></div><button id="export" type="button" class="primary">Download CSV</button></div>
+<div class="table-wrap" tabindex="0" aria-label="Scrollable monthly delivered-cost table"><table><thead><tr><th scope="col">Month</th><th scope="col">Use<br>MMBtu</th><th scope="col">Hub cash<br>$/MMBtu</th><th scope="col">Fixed price<br>$/MMBtu</th><th scope="col">Local charges<br>USD</th><th scope="col">All variable<br>USD</th><th scope="col">Fixed share<br>USD</th><th scope="col">Change¹<br>USD</th></tr></thead><tbody id="breakdown"></tbody><tfoot id="totals"></tfoot></table></div><p class="field-note">¹ Fixed-share budget minus all-variable budget. Negative values are savings. Totals use unrounded values.</p></section>
+</div>
+<section class="card notes" id="methods"><p class="eyebrow">Sources and calculations</p><h2>How the replay works</h2>
+<p>Henry Hub cash is the EIA’s monthly average spot price in U.S. dollars per million British thermal units (MMBtu). Replay covers complete November–March winters only. The plant profiles are illustrative consumption schedules; editing a month creates a custom profile. <a id="source-eia" href="https://www.eia.gov/dnav/ng/hist/rngwhhdM.htm">EIA monthly Henry Hub series</a>.</p>
+<p id="snapshot-notes"></p>
+<p>For each month, the mixed budget is consumption × [fixed share × fixed price + floating share × Henry Hub cash + local basis + variable delivery] + the monthly service charge. The all-variable case sets the fixed share to zero. Local basis may be negative.</p>
+<p>The calculation assumes the contracted share matches actual monthly consumption and settles against the same monthly cash index. It excludes taxes, supplier premiums, financing, margin, volume deviations and timing differences. Monthly averages can differ from an actual plant’s daily load-weighted price.</p>
+<small id="coverage"></small></section>
+</main><footer><a href="../">Henry Hub Research</a><span>Industrial Gas Cost Simulator</span></footer></body></html>
