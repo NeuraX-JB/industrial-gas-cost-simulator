@@ -1,3 +1,41 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#113830"><meta name="description" content="A historical winter gas-budget replay with explicit fixed-share, volume and local-charge assumptions."><title>Industrial Gas Cost Simulator · John Barreto</title><link rel="stylesheet" href="lab/industrial/style.css"></head>
-<body><header><div class="top"><a href="./" aria-current="page">Henry Hub Research</a><nav aria-label="Project navigation"><a href="lab/industrial/">Simulator</a><a href="README.md">Project guide</a></nav></div></header><main><section class="intro"><p class="eyebrow">John Barreto · Independent natural gas research</p><h1>Industrial Gas Cost Simulator</h1><p>How would fixing part of a plant's winter gas consumption change its fuel budget?</p><p class="snapshot-status">Historical snapshot · cash data through October 2026 · no live price feed</p><div class="landing-actions"><a class="primary" href="lab/industrial/">Open the simulator</a><a href="DATA_SOURCES.md">Inspect the data sources</a></div></section><section class="card landing-copy"><h2>Replay a complete winter</h2><p>Choose November–March delivery months, enter monthly use and compare all-variable purchases with a fixed share. Adjust local basis, delivery tariffs and service fees, then export the assumptions and monthly results.</p><p>Fixed prices are either an explicit user assumption or a curve reconstructed from dated SEC fund holdings. Plant profiles are illustrative. Both budgets use the same local charges.</p></section><section class="card landing-copy"><h2>Read the assumptions first</h2><p>The replay uses monthly Henry Hub averages and matched fixed volumes. It excludes taxes, supplier premiums, financing, margin, volume deviations and timing differences. It is a historical research tool, not an executable procurement quote.</p><p><a href="lab/industrial/#methods">Read the calculation</a> · <a href="lab/industrial/forward-audit.csv">Download the forward-position audit</a> · <a href="VALIDATION.md">Review validation checks</a></p></section></main><footer><span>John Barreto · Industrial procurement research</span><a href="https://neurax-jb.github.io/Henry-Hub-Futures-Curve-Explorer-How-the-Natural-Gas-Market-prices-winter/lab/">Original research portfolio</a></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#113830">
+  <meta name="description" content="Replay a U.S. paper mill’s winter gas budget. Compare monthly cash purchases with a fixed share, inspect the historical prices and export the costs.">
+  <title>Industrial Gas Cost Simulator · John Barreto</title>
+  <link rel="stylesheet" href="lab/industrial/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to project</a>
+  <header>
+    <div class="top">
+      <a href="https://github.com/NeuraX-JB">John Barreto</a>
+      <nav aria-label="Project navigation"><a href="lab/industrial/">Simulator</a><a href="https://github.com/NeuraX-JB/industrial-gas-cost-simulator">Repository</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="intro">
+      <p class="eyebrow">Industrial procurement · Historical replay</p>
+      <h1>Industrial Gas Cost Simulator</h1>
+      <p>How much would a paper mill have spent on gas if it had fixed half its volume before winter?</p>
+      <p class="snapshot-status">29 complete winters · November 1997 to March 2026 · cash data through October 2026</p>
+      <div class="landing-actions"><a class="primary" href="lab/industrial/">Open the simulator</a><a href="https://github.com/NeuraX-JB/industrial-gas-cost-simulator/blob/main/README.md">Read the worked example</a></div>
+    </section>
+    <section class="card landing-copy">
+      <h2>A $17,231.35 difference in the 2025–26 replay</h2>
+      <p>The illustrative mill uses 46,900 MMBtu. Buying at monthly Henry Hub cash prices costs $238,559.00 including delivery and local basis. Fixing half of each month against the reconstructed September 30, 2025 curve brings the bill to $221,327.65.</p>
+      <p>January alone accounts for $17,537.85 in savings. Fixing adds to the bill in February and March. Open the simulator and select <strong>Reset scenario</strong> to inspect all five months or change the plant’s load.</p>
+    </section>
+    <section class="card landing-copy">
+      <h2>Which prices could a buyer have seen?</h2>
+      <p>The floating bill uses EIA monthly averages. Dated fixed prices come from fund positions disclosed in later SEC filings. Only three completed winters have an eligible curve. You can enter an assumed flat quote for any of the 29 winters.</p>
+      <p>Both plans pay the same local charges. Daily load variation, taxes, supplier premiums, financing, margin and contract volume mismatches can change a plant’s actual bill.</p>
+      <p><a href="lab/industrial/#methods">Calculation details</a> · <a href="lab/industrial/forward-audit.csv">Forward-position audit (CSV)</a> · <a href="https://github.com/NeuraX-JB/industrial-gas-cost-simulator/blob/main/DATA_SOURCES.md">Sources and attribution</a></p>
+    </section>
+  </main>
+  <footer><span>John Barreto · Industrial procurement research</span><a href="https://github.com/NeuraX-JB/industrial-gas-cost-simulator/blob/main/VALIDATION.md">Validation checks</a></footer>
+</body>
+</html>

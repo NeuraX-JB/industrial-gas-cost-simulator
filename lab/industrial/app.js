@@ -167,7 +167,7 @@
   } catch(error) {
     const status=document.getElementById("load-status");
     status.textContent="The simulator could not load its bundled data. Reload the page or consult the project README for local-server instructions.";
-    const guide=document.createElement("a");guide.href="../../README.md";guide.textContent=" Read setup instructions.";status.append(guide);
+    const guide=document.createElement("a");guide.href="https://github.com/NeuraX-JB/industrial-gas-cost-simulator/blob/main/README.md";guide.textContent=" Read setup instructions.";status.append(guide);
     status.setAttribute("role","alert");status.hidden=false;
     document.getElementById("output").hidden=true;
     document.getElementById("export").disabled=true;

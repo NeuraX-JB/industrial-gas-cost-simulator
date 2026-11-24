@@ -6,7 +6,7 @@ This repository contains the industrial procurement replay. It does not include 
 | :--- | :--- | :--- |
 | U.S. Energy Information Administration | 358 monthly average Henry Hub spot observations, 1997-01–2026-10; release 2026-11-18 | [EIA monthly series](https://www.eia.gov/dnav/ng/hist/rngwhhdM.htm), [frozen market asset](lab/industrial/market.js) |
 | U.S. 12 Month Natural Gas Fund SEC filings | 13 reconstructed curve snapshots, 2023-09-29–2026-09-30 | [Position audit with source URLs](lab/industrial/forward-audit.csv), [reconstruction code](lab/industrial/refresh.py) |
-| User assumptions | Plant volumes, fixed percentage, local basis, delivery tariffs, monthly fee and optional flat fixed price | Entered in [the simulator](lab/industrial/index.html); the supplied plant profiles and local charges are illustrative |
+| User assumptions | Plant volumes, fixed percentage, local basis, delivery tariffs, monthly fee and optional flat fixed price | Entered in [the simulator](https://neurax-jb.github.io/industrial-gas-cost-simulator/lab/industrial/); the supplied plant profiles and local charges are illustrative |
 
 For each audited long futures position, `(original notional + signed unrealized gain/loss) / (contracts × 10,000 MMBtu)` gives the implied price, rounded to $0.001/MMBtu. The observation date precedes the winter in which it can be used, but the filing became public later. These reconstructions are historical marks, not a record of executable plant quotes or information necessarily available to a trader on the observation date.
 
